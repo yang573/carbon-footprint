@@ -1,0 +1,138 @@
+/* NOTE: This is an abomination. I take no responsibility for any cranial
+ * injury caused by liberal applications of head-desk. In case of retinal
+ * burns, refer to /r/eyebleach for assistance.
+ */
+
+/* APIs to Find
+ * IN_VEHICLE
+ * DISTANCE_TRAVELED
+ * CURRENT_PERCENT
+ * DISCHARGING
+ * RECHARGING
+ * BatteryManager
+ * CURRENT_OPEN_APP
+ * DEGREE_DAYS (Wunderground?)
+ */
+
+// Main Page
+
+public double totalCarbonEmissions; // what units??
+// get someone who knows data structures!
+// need daily emissions, for history purposes
+
+// background refresh rate
+public double refreshRate = 15;
+
+// phone usage var
+public double phoneStart;
+public double phoneCurrent;
+public double phoneDif;
+public double phoneElectricity;
+public double phoneEmit = 0;
+public double phoneCMultiplier
+
+// vehicle var
+public double carDistance;
+public double carEmit = 0;
+
+// hvac var
+public double todayDegreeDays; // degree days for the day
+public double baseTemp; // temp used in degree day calculations (~650
+public double setTemp; // temp on thermostat
+public double hvacEmit;
+
+// utility bill
+public double kWh;
+public double electricCMultiplier;
+public double therms;
+public double gasCMultiplier = 53.07; // kg CO2 per million BTU
+// https://www.eia.gov/environment/emissions/co2_vol_mass.php
+
+public int numDays;
+public double utilEmit;
+public double dailyUtilEmit;
+
+
+DISPLAY totalCarbonEmissions;
+	ON_CLICK goto graph;
+DISPLAY phoneEmit;
+	ON_CLICK goto phone usage;
+DISPLAY carEmit;
+	ON_CLICK goto vehicle;
+DISPLAY hvacEmit;
+	ON_CLICK goto hvac;
+
+// phone usage
+
+if (DISCHARGING) {
+	
+	phoneStart = CURRENT_PERCENT; // stores battery percentage when starts discharging
+	
+	while (DISCARDING) {
+		phoneCurrent = CURRENT_PERCENT; // finds current battery percentage
+		
+		// finds amt of emissions since beginning of discharge
+		phoneEmit += ((phoneStart - phoneCurrent) - phoneDif) * BATTERY_PROPERTY_CHARGE_COUNTER
+			* phoneCMultiplier;
+		phoneDif = phoneStart - phoneCurrent;
+		
+		// basically this is for making sure the app isn't updating every second
+		// there must be better ways to do this
+		if (!CURRENT_OPEN_APP)
+			WAIT 1000 * 60 * refreshRate; // default: 10 min
+		else
+			WAIT 1000 * 30; // 30 sec
+		
+		
+	}
+	
+	// adds final amt of emissions when stops discharging
+	phoneCurrent = CURRENT_PERCENT
+	phoneEmit += (phoneStart - phoneCurrent) * BATTERY_PROPERTY_CHARGE_COUNTER * cMultiplier;
+}
+
+// maybe easier just to calculate based on recharge amount?
+// could also give estimates during discharge, and more accurate
+// values during/after recharge
+if (RECHARGING) {
+	
+	phoneStart = CURRENT_PERCENT; // stores battery percentage when starts discharging
+	
+	while (RECHARGING) {
+		// idk
+	}
+}
+
+// vehicle
+
+if (IN_VEHICLE) {
+	
+	carDistance = 0;
+	
+	while (IN_VEHICLE) {
+		carDistance += DISTANCE_TRAVELED;
+	}
+	
+	carEmit += carDistance * fuelEconomy * cPerGallon;
+}
+
+// hvac
+// check out these links:
+// http://www.degreedays.net/introduction
+// https://www.energyvanguard.com/blog/77157/The-Fundamentals-of-Heating-and-Cooling-Degree-Days-Part-1
+// bah, this may not be possible
+
+todayDegreeDays = DEGREE_DAYS;
+(setTemp - baseTemp) + todayDegreeDays;
+// voodoo magic
+
+
+// utility bill
+utilEmit = (kWh * electricCMultiplier) + (therms * gasCMultiplier / 10);
+dailyUtilEmit = utilEmit / numDays;
+
+
+
+
+
+
