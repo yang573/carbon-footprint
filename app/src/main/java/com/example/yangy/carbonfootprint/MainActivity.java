@@ -3,20 +3,13 @@ package com.example.yangy.carbonfootprint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Build;
-import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.os.BatteryManager;
 import android.widget.Toast;
-
-import com.genymobile.mirror.annotation.Class;
-
-import junit.runner.Version;
-
-import org.w3c.dom.Text;
+import java.lang.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,14 +25,24 @@ public class MainActivity extends AppCompatActivity {
         int initialCap = (int) mBatteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
         int currentCap;
 
-        TextView init = findViewById(R.id.initial);
-        init.setText(String.valueOf(initialCap));
+        //TextView init = findViewById(R.id.initial);
+        //init.setText(String.valueOf(initialCap));
 
         IntentFilter batteryChangeFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent yetAnotherIntent = context.registerReceiver(null, batteryChangeFilter);
 
-        TextView dif = findViewById(R.id.battery);
-        dif.setText("some text");
+        TextView dif = findViewById(R.id.PhoneUsage);
+        dif.setText("PhoneUsage");
+        dif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), PhoneUsage.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView display = findViewById(R.id.energyUsage);
+        display.setText(getBatteryCapacity());
 
         /*
         TextView dif = findViewById(R.id.battery);
@@ -90,28 +93,30 @@ public class MainActivity extends AppCompatActivity {
     // how to implement this for older APIs
     // please ignore
 
-    public void getBatteryCapacity() {
-        Object mPowerProfile_ = null;
+    public String getBatteryCapacity() {
+        Object mPowerProfile = null;
 
         final String POWER_PROFILE_CLASS = "com.android.internal.os.PowerProfile";
 
         try {
-            mPowerProfile_ = Class.forName(POWER_PROFILE_CLASS)
+            mPowerProfile = Class.forName(POWER_PROFILE_CLASS)
                     .getConstructor(Context.class).newInstance(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        double batteryCapacity = 0.0;
+
         try {
-            double batteryCapacity = (Double) Class
+            batteryCapacity = (Double) Class
                     .forName(POWER_PROFILE_CLASS)
                     .getMethod("getAveragePower", java.lang.String.class)
-                    .invoke(mPowerProfile_, "battery.capacity");
-            Toast.makeText(MainActivity.this, batteryCapacity + " mah",
-                    Toast.LENGTH_LONG).show();
+                    .invoke(mPowerProfile, "battery.capacity");
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return batteryCapacity + " mah";
     }
 
 }

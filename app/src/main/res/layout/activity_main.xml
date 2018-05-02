@@ -1,13 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
     tools:context="com.example.yangy.carbonfootprint.MainActivity">
+
+    <View
+        android:id="@+id/energyUsageBG"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:elevation="2dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+
+        android:background="@color/colorWhite" />
+
+    <TextView
+        android:id="@+id/energyUsage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:elevation="6dp"
+
+        app:layout_constraintTop_toTopOf="@id/energyUsageBG"
+        app:layout_constraintBottom_toBottomOf="@id/energyUsageBG"
+        app:layout_constraintRight_toRightOf="@id/energyUsageBG"
+        app:layout_constraintLeft_toLeftOf="@id/energyUsageBG"
+
+
+        android:background="@drawable/circle_figure"
+        android:gravity="center"
+        android:text="error"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/PhoneUsage"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="2dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/energyUsageBG"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+
+        android:paddingLeft="64dp"
+        android:gravity="center_vertical"
+        android:background="@color/colorWhite"/>
+
+
+
+    <!--
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="PhoneUsage"/>
 
     <TextView
         android:id="@+id/battery"
+        android:layout_below="@id/energyUsageBG"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@color/colorPrimary"
@@ -21,7 +81,6 @@
         android:text="Initial"/>
     <TextView
         android:id="@+id/current"
-        android:layout_below="@id/initial"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="#E74C3C"
@@ -29,7 +88,6 @@
 
     <TextView
         android:id="@+id/status"
-        android:layout_toRightOf="@id/battery"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="#F1C40F"
@@ -37,11 +95,9 @@
 
     <TextView
         android:id="@+id/charging"
-        android:layout_below="@id/status"
-        android:layout_toRightOf="@id/current"
         android:layout_width="100dp"
-        android:layout_height="100dp"
         android:background="#707B7C"
-        android:text="Boolean Charging State"/>
+        android:text="Boolean Charging State" />
+        -->
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

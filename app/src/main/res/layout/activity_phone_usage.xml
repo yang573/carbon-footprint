@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
+    tools:context="com.example.yangy.carbonfootprint.PhoneUsage">
+
+    <View
+        android:id="@+id/phoneEnergyUsageBG"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:elevation="2dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+
+        android:background="@color/colorWhite" />
+
+    <TextView
+        android:id="@+id/phoneEnergyUsage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:elevation="6dp"
+
+        app:layout_constraintTop_toTopOf="@id/phoneEnergyUsageBG"
+        app:layout_constraintBottom_toBottomOf="@id/phoneEnergyUsageBG"
+        app:layout_constraintRight_toRightOf="@id/phoneEnergyUsageBG"
+        app:layout_constraintLeft_toLeftOf="@id/phoneEnergyUsageBG"
+
+
+        android:background="@drawable/circle_figure"
+        android:backgroundTint="@color/colorAccentDark"
+        android:gravity="center"
+        android:text="error"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/phoneUsage"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="2dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phoneEnergyUsageBG"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="12dp"
+
+        android:text="error"
+        android:paddingLeft="64dp"
+        android:gravity="center_vertical"
+        android:background="@color/colorWhite"/>
+
+</android.support.constraint.ConstraintLayout>
