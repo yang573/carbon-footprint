@@ -1,16 +1,11 @@
 package com.example.yangy.carbonfootprint;
 
-import android.app.IntentService;
+import android.app.AlarmManager;
+import android.content.Context;
 import android.content.Intent;
 
-public class PhoneUsageBackground extends IntentService {
+//extends IntentService??
+public class PhoneUsageBackground {
 
-    public PhoneUsageBackground() {
-        super("PhoneUsageBackground");
-    }
 
-    @Override
-    protected void onHandleIntent(Intent intent) {
-
-    }
 }

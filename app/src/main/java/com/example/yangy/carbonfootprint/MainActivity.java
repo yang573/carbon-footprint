@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter batteryChangeFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent yetAnotherIntent = context.registerReceiver(null, batteryChangeFilter);
 
-        TextView dif = findViewById(R.id.PhoneUsage);
-        dif.setText("PhoneUsage");
-        dif.setOnClickListener(new View.OnClickListener() {
+        TextView phoneData = findViewById(R.id.PhoneUsage);
+        phoneData.setText("Phone Usage");
+        phoneData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), PhoneUsage.class);
@@ -41,8 +41,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TextView display = findViewById(R.id.energyUsage);
-        display.setText(getBatteryCapacity());
+        TextView carData = findViewById(R.id.CarUsage);
+        carData.setText("Car Use");
+        carData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CarUsage.class);
+                startActivity(intent);
+            }
+        });
+
+        //TextView display = findViewById(R.id.energyUsage);
+        //display.setText(getBatteryCapacity());
 
         /*
         TextView dif = findViewById(R.id.battery);
@@ -89,35 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // github code for when I was trying to figure out
-    // how to implement this for older APIs
-    // please ignore
-
-    public String getBatteryCapacity() {
-        Object mPowerProfile = null;
-
-        final String POWER_PROFILE_CLASS = "com.android.internal.os.PowerProfile";
-
-        try {
-            mPowerProfile = Class.forName(POWER_PROFILE_CLASS)
-                    .getConstructor(Context.class).newInstance(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        double batteryCapacity = 0.0;
-
-        try {
-            batteryCapacity = (Double) Class
-                    .forName(POWER_PROFILE_CLASS)
-                    .getMethod("getAveragePower", java.lang.String.class)
-                    .invoke(mPowerProfile, "battery.capacity");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return batteryCapacity + " mah";
-    }
 
 }
 

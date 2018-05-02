@@ -3,6 +3,7 @@
     package="com.example.yangy.carbonfootprint">
 
     <uses-permission android:name="android.permission.BATTERY_STATS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -22,15 +23,23 @@
         </activity>
 
         <!-- Phone Usage -->
-        <activity android:name=".PhoneUsage"
+        <activity
+            android:name=".PhoneUsage"
             android:parentActivityName=".MainActivity">
         </activity>
 
         <receiver android:name=".BatteryReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BATTERY_CHANGED"/>
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
             </intent-filter>
         </receiver>
+
+        <!-- Car Use -->
+        <activity
+            android:name=".CarUsage"
+            android:parentActivityName=".MainActivity">
+        </activity>
+
     </application>
 
 </manifest>

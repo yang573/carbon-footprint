@@ -35,7 +35,7 @@
 
         android:background="@drawable/circle_figure"
         android:gravity="center"
-        android:text="error"
+        android:text="Error"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
         android:textSize="25sp" />
@@ -49,6 +49,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/energyUsageBG"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+
+        android:paddingLeft="64dp"
+        android:gravity="center_vertical"
+        android:background="@color/colorWhite"/>
+
+    <TextView
+        android:id="@+id/CarUsage"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="2dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PhoneUsage"
         android:layout_marginEnd="6dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
